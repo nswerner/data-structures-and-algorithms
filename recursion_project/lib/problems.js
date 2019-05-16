@@ -192,21 +192,26 @@ function fileFinder(directories, targetFile) {
 // pathFinder(desktop, 'everlong.flac'));       // => '/music/genres/rock/everlong.flac'
 // pathFinder(desktop, 'honeybadger.png'));     // => null
 function pathFinder(directories, targetFile) {
-    for (key in directories) {
-        if (key === targetFile) return '/' + targetFile;
+    for (name in directories) {
+        const localName = name;
+        if (name === targetFile) {
+            return '/' + targetFile;
+        }    
 
-        let subdir = directories[key];
-        let path = pathFinder(subdir, targetFile)
-        
-        if (path !== null) {
-            return key + path;
+        // let subdir = directories[name];
+        let subPath = pathFinder(directories[localName], targetFile)
+
+        if (subPath !== null) {
+            return localName + subPath;
         }
     }
-
+    
     return null;
-}
+};
 
-pathFinder(desktop, 'trixie_lou.jpeg');     // => '/images/pets/trixie_lou.jpeg'
+
+console.log(pathFinder(desktop, 'trixie_lou.jpeg'));     // => '/images/pets/trixie_lou.jpeg'
+
 
 
 module.exports = {
