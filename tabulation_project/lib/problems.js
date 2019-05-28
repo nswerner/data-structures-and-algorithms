@@ -38,19 +38,19 @@ function stepper(nums) {
 }
 
 function stepper(nums, memo = {}) {
-    if (nums in memo) return memo[nums];
+    if (nums.length in memo) return memo[nums.length];
     if (nums.length === 0) return true;
     let maxRange = nums[0];
 
     for (let step = 1; step <= maxRange; step++) {
         if (stepper(nums.slice(step), memo)) {
-            memo[nums.slice(step)] = true;
-            return memo[nums.slice(step)];
+            memo[nums.length - step] = true;
+            return memo[nums.length - step];
         } 
     }
 
-    memo[nums] = false;
-    return memo[nums];
+    memo[nums.length] = false;
+    return memo[nums.length];
 }
 
 
