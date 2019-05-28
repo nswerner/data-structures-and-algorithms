@@ -37,6 +37,24 @@ function stepper(nums) {
     return table[table.length - 1];
 }
 
+function stepper(nums, memo = {}) {
+    if (nums in memo) return memo[nums];
+    if (nums.length === 0) return true;
+    let maxRange = nums[0];
+
+    for (let step = 1; step <= maxRange; step++) {
+        if (stepper(nums.slice(step), memo)) {
+            memo[nums.slice(step)] = true;
+            return memo[nums.slice(step)];
+        } 
+    }
+
+    memo[nums] = false;
+    return memo[nums];
+}
+
+
+stepper([3, 1, 0, 5, 10])
 
 // Write a function, maxNonAdjacentSum(nums), that takes in an array of nonnegative numbers.
 // The function should return the maximum sum of elements in the array we can get if we cannot take
