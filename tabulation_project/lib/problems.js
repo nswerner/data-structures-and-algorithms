@@ -54,8 +54,6 @@ function stepper(nums, memo = {}) {
 }
 
 
-stepper([3, 1, 0, 5, 10])
-
 // Write a function, maxNonAdjacentSum(nums), that takes in an array of nonnegative numbers.
 // The function should return the maximum sum of elements in the array we can get if we cannot take
 // adjacent elements into the sum.
@@ -67,7 +65,20 @@ stepper([3, 1, 0, 5, 10])
 // maxNonAdjacentSum([2, 7, 9, 3, 4])   // => 15, because 2 + 9 + 4
 // maxNonAdjacentSum([4,2,1,6])         // => 10, because 4 + 6 
 function maxNonAdjacentSum(nums) {
+    if (nums.length === 0) return 0;
+    let table = new Array(nums.length).fill(0);
+    table[0] = nums[0];
 
+    for (let idx = 1; idx < nums.length; idx ++) {
+        let skipLeftNeighbor = table[idx - 2] === undefined ? 0 : table[idx - 2];
+        let includeThisNum = skipLeftNeighbor + nums[idx];
+        let notThisNum = table[idx - 1];
+
+        let maxSum = Math.max(includeThisNum, notThisNum);
+        table[idx] = maxSum;
+    }   
+
+    return table[table.length - 1];
 }
 
 
