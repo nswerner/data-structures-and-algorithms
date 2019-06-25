@@ -39,9 +39,41 @@
 // -----------
 // Let's code!
 // -----------
-function linkedListIntersection(list1, list2) {
-  // TODO: Implement the hasCycle function!
 
+
+// strategy:
+// if one list is longer than the other, traverse down the list until the two lists' lengths are the same, then check for deep equality.
+// can't use .length property because setting .next= does not update the LL length.
+function linkedListIntersection(list1, list2) {
+  const list1Length = getListLength(list1.head);
+  const list2Length = getListLength(list2.head);
+  let dif = Math.abs(list1Length - list2Length);
+  
+  let long = list1Length >= list2Length ? list1.head : list2.head;
+  let short = list1Length >= list2Length ? list2.head : list1.head;
+
+  while (long && short) {
+    if (dif > 0) {
+      long = long.next;
+      dif--;
+      continue;
+    }
+
+    if (long === short) return long;
+
+    long = long.next;
+    short = short.next;
+  }
+
+  return null;
+}
+
+function getListLength(node) {
+  if (node.next === null) {
+    return 1;
+  } else {
+    return getListLength(node.next) + 1;
+  }
 }
 
 // ----------------------------------------
@@ -103,3 +135,24 @@ exports.Node = Node;
 exports.LinkedList = LinkedList;
 exports.linkedListIntersection = linkedListIntersection;
 exports.stringify = stringify;
+
+
+
+// let list1 = new LinkedList();
+// list1.addToTail("A");
+// list1.addToTail("B");
+// list1.addToTail("C");
+// list1.addToTail("D");
+// list1.addToTail("E");
+// list1.addToTail("F");
+
+// let list2 = new LinkedList();
+// list2.addToTail('X');
+// list2.addToTail('Y');
+
+// nodeD = list1.get(3);
+// nodeY = list2.get(1);
+
+// nodeY.next = nodeD;
+
+// linkedListIntersection(list1, list2);

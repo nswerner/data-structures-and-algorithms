@@ -61,7 +61,6 @@
 // -----------
 function hasCycle(linkedList) {
   // TODO: Implement the hasCycle function!
-
 }
 
 
