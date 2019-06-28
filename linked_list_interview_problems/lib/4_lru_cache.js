@@ -68,7 +68,6 @@ class LRUCache {
   constructor(limit) {
     this.limit = limit;
     this.items = {};
-
     this.ordering = new List();
     this.length = 0;
   }

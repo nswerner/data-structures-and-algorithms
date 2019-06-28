@@ -74,7 +74,7 @@ function getNode(linkedlist, index) {
   return node;
 }
 
-// I think I could improve on the time complexity from O(n^3) to O(n) by creating a helper f(x) to swap, that got its Node from the current iteration/stack
+// I think I could improve on the time complexity from O(3n^2) to O(n) by creating a helper f(x) to swap, that got its Node from the current iteration/stack
 
 function reverseLinkedList(linkedList) {
   const length = linkedList.length;

@@ -47,15 +47,15 @@
 function linkedListIntersection(list1, list2) {
   const list1Length = getListLength(list1.head);
   const list2Length = getListLength(list2.head);
-  let dif = Math.abs(list1Length - list2Length);
+  let diff = Math.abs(list1Length - list2Length);
   
   let long = list1Length >= list2Length ? list1.head : list2.head;
   let short = list1Length >= list2Length ? list2.head : list1.head;
 
   while (long && short) {
-    if (dif > 0) {
+    if (diff > 0) {
       long = long.next;
-      dif--;
+      diff--;
       continue;
     }
 
