@@ -103,8 +103,6 @@ class Stack {
         const temp = this.top;
         if (this.top === this.bottom) {
             this.bottom = null;
-            this.max = -Infinity;
-            this.min = Infinity;
         }
         this.top = this.top.next;
         this.length--;

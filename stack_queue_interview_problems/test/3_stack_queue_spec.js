@@ -262,7 +262,7 @@ describe('Problem 3: StackQueue', () => {
                     expect(stackQueue.back.value).to.equal('A');
                 });
 
-                it('Should reassign only the front pointer when new nodes are added to the back of the stackQueue of size one or greater', () => {
+                it('Should reassign only the back pointer when new nodes are added to the back of the stackQueue of size one or greater', () => {
                     stackQueue.enqueue('A');
                     stackQueue.enqueue('B');
                     expect(stackQueue.front.value).to.equal('A');
@@ -272,7 +272,7 @@ describe('Problem 3: StackQueue', () => {
                     expect(stackQueue.back.value).to.equal('C');
                 });
 
-                it('Should point the next property of the front node to the node that follows it for queues of size one or greater', () => {
+                it('Should point the next property of the back node to the node that follows it for queues of size one or greater', () => {
                     stackQueue.enqueue('A');
                     stackQueue.enqueue('B');
                     expect(stackQueue.front.next.value).to.eql('B');
