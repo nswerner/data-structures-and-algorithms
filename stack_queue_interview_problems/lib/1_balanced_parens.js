@@ -76,38 +76,31 @@
 // Let's code!
 // -----------
 function balancedParens(str) {
-  const parensStack = [];
-  const curlyStack = [];
-  const squareStack = [];
+  const brackets = {
+    "(":")",
+    "[":"]",
+    "{":"}"
+  }
+
+  const stack = [];
 
   for (let idx = 0; idx < str.length; idx++) {
     const char = str[idx];
 
-    if (char === "(") parensStack.push(char);
-    if (char === "{") curlyStack.push(char);
-    if (char === "[") squareStack.push(char);
-
-    
-    if (char === ")" && parensStack[parensStack.length - 1] === "(") {
-      parensStack.pop();
-    } else if (char === ")") { 
-      parensStack.push(char);
+    if ("{([".indexOf(char) > -1) {
+      stack.push(char);
     }
 
-    if (char === "}" && curlyStack[curlyStack.length - 1] === "{") {
-      curlyStack.pop();
-    } else if (char === "}") {
-      curlyStack.push(char);
+    if (brackets[stack[stack.length - 1]] === char) {
+      stack.pop();
+    } else if ("})]".indexOf(char) > -1) {
+      return false;
     }
 
-    if (char === "]" && squareStack[squareStack.length - 1] === "[") {
-      squareStack.pop();
-    } else if (char === "]") {
-      squareStack.push(char);
-    }
   }
 
-  return parensStack.length === 0 && curlyStack.length === 0 && squareStack.length === 0;
+  
+  return stack.length === 0;
 }
 
 exports.balancedParens = balancedParens;
