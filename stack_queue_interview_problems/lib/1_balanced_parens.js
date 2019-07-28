@@ -123,37 +123,62 @@
 
 
 
+// const balancedParens = function(str) {
+  // const brackets = {
+  //   '{': '}',
+  //   '(': ')',
+  //   '[': ']'
+  // }
+
+//   const stack = [];
+
+//   for (let idx = 0; idx < str.length; idx++) {
+//     const char = str[idx];
+
+//     if (brackets[char]) stack.push(char); // if its a left bracket, push on stack
+
+//     // if its a right bracket matching the top of stack, pop off stack
+//     // else if its a right bracket, push on stack
+//     if (brackets[stack[stack.length - 1]] === char) {
+//       stack.pop(); 
+//     } else if ('})]'.includes(char)) {
+//       return false;
+//     }
+//   }
+
+//   return stack.length === 0;
+// }
 
 
 
 
 
-const balancedParens = function(str) {
+
+
+
+function balancedParens(string) {
   const brackets = {
     '{': '}',
     '(': ')',
     '[': ']'
-  }
+  };
 
   const stack = [];
 
-  for (let idx = 0; idx < str.length; idx++) {
-    const char = str[idx];
+  for (let idx = 0; idx < string.length; idx++) {
+    const char = string[idx];
+    const topOfStack = stack[stack.length - 1];
 
-    if (brackets[char]) stack.push(char); // if its a left bracket, push on stack
+    if (brackets[char]) stack.push(char);
 
-    // if its a right bracket matching the top of stack, pop off stack
-    // else if its a right bracket, push on stack
-    if (brackets[stack[stack.length - 1]] === char) {
-      stack.pop(); 
-    } else if ('})]'.includes(char)) {
+    if (brackets[topOfStack] === char) {
+      stack.pop();
+    } else if (')}]'.includes(char)) {
       return false;
     }
   }
 
   return stack.length === 0;
 }
-
-balancedParens("()");
 
 exports.balancedParens = balancedParens;
