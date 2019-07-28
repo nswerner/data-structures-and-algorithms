@@ -75,11 +75,64 @@
 // -----------
 // Let's code!
 // -----------
-function balancedParens(str) {
+// function balancedParens(str) {
+//   const brackets = {
+//     "(":")",
+//     "[":"]",
+//     "{":"}"
+//   }
+
+//   const stack = [];
+
+//   for (let idx = 0; idx < str.length; idx++) {
+//     const char = str[idx];
+
+//     if ("{([".indexOf(char) > -1) {
+//       stack.push(char);
+//     }
+
+//     if (brackets[stack[stack.length - 1]] === char) {
+//       stack.pop();
+//     } else if ("})]".indexOf(char) > -1) {
+//       return false;
+//     }
+
+//   }
+
+  
+//   return stack.length === 0;
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const balancedParens = function(str) {
   const brackets = {
-    "(":")",
-    "[":"]",
-    "{":"}"
+    '{': '}',
+    '(': ')',
+    '[': ']'
   }
 
   const stack = [];
@@ -87,20 +140,20 @@ function balancedParens(str) {
   for (let idx = 0; idx < str.length; idx++) {
     const char = str[idx];
 
-    if ("{([".indexOf(char) > -1) {
-      stack.push(char);
-    }
+    if (brackets[char]) stack.push(char); // if its a left bracket, push on stack
 
+    // if its a right bracket matching the top of stack, pop off stack
+    // else if its a right bracket, push on stack
     if (brackets[stack[stack.length - 1]] === char) {
-      stack.pop();
-    } else if ("})]".indexOf(char) > -1) {
+      stack.pop(); 
+    } else if ('})]'.includes(char)) {
       return false;
     }
-
   }
 
-  
   return stack.length === 0;
 }
+
+balancedParens("()");
 
 exports.balancedParens = balancedParens;
