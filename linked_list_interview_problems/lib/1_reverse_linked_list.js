@@ -61,50 +61,84 @@
 // Let's code!
 // -----------
 
-function getNode(linkedlist, index) {
-  if (index < 0 || index >= linkedlist.length) return null;
+// function getNode(linkedlist, index) {
+//   if (index < 0 || index >= linkedlist.length) return null;
 
-  let idx = 0;
-  let node = linkedlist.head;
-  while (idx < index) {
+//   let idx = 0;
+//   let node = linkedlist.head;
+//   while (idx < index) {
+//     node = node.next;
+//     idx++;
+//   }
+
+//   return node;
+// }
+
+// // I think I could improve on the time complexity from O(3n^2) to O(n) by creating a helper f(x) to swap, that got its Node from the current iteration/stack
+
+// function reverseLinkedList(linkedList) {
+//   const length = linkedList.length;
+
+//   for (let idx = 0; idx < Math.floor(length / 2); idx++) {    
+//     let leftPrev = getNode(linkedList, idx - 1);
+//     let rightPrev = getNode(linkedList, length - 2 - idx);
+
+//     let leftNode = leftPrev ? leftPrev.next : getNode(linkedList, idx);
+//     let rightNode = rightPrev ? rightPrev.next : null;
+
+//     let leftNext = leftNode.next;
+//     let rightNext = rightNode.next;
+
+//     if (length % 2 === 0 && idx === Math.floor(length / 2) - 1) {
+//       leftPrev ? leftPrev.next = rightNode : linkedList.head = rightNode;
+//       rightNode.next = leftNode;
+//       leftNode.next = rightNext;
+//     } else {
+//       rightPrev.next = leftNode;
+//       leftNode.next = rightNext;
+
+//       leftPrev ? leftPrev.next = rightNode : linkedList.head = rightNode;
+//       rightNode.next = leftNext;
+//     }
+
+//     if (idx === 0) linkedList.tail = leftNode;
+//   }
+
+//   return linkedList;
+// }
+
+
+function getNode(linkedList, idx) {
+  if (idx >= linkedList.length) return null;
+  let counter = 0;
+  let node = linkedList.head;
+
+  while (counter < idx) {
     node = node.next;
-    idx++;
+    counter++;
   }
 
   return node;
 }
 
-// I think I could improve on the time complexity from O(3n^2) to O(n) by creating a helper f(x) to swap, that got its Node from the current iteration/stack
-
 function reverseLinkedList(linkedList) {
-  const length = linkedList.length;
+  let node = linkedList.head;
+  let first = node;
+  let prev = null;
+  let next = null;
 
-  for (let idx = 0; idx < Math.floor(length / 2); idx++) {    
-    let leftPrev = getNode(linkedList, idx - 1);
-    let rightPrev = getNode(linkedList, length - 2 - idx);
-
-    let leftNode = leftPrev ? leftPrev.next : getNode(linkedList, idx);
-    let rightNode = rightPrev ? rightPrev.next : null;
-
-    let leftNext = leftNode.next;
-    let rightNext = rightNode.next;
-
-    if (length % 2 === 0 && idx === Math.floor(length / 2) - 1) {
-      leftPrev ? leftPrev.next = rightNode : linkedList.head = rightNode;
-      rightNode.next = leftNode;
-      leftNode.next = rightNext;
-    } else {
-      rightPrev.next = leftNode;
-      leftNode.next = rightNext;
-
-      leftPrev ? leftPrev.next = rightNode : linkedList.head = rightNode;
-      rightNode.next = leftNext;
-    }
-
-    if (idx === 0) linkedList.tail = leftNode;
+  while (next = node.next) {
+    node.next = prev;
+    prev = node;
+    node = next;
   }
 
+  linkedList.head = node;
+  linkedList.head.next = prev;
+  linkedList.tail = first;
+
   return linkedList;
+
 }
 
 
@@ -144,3 +178,8 @@ exports.Node = Node;
 exports.LinkedList = LinkedList;
 exports.reverseLinkedList = reverseLinkedList;
 
+// let linkedList = new LinkedList();
+// linkedList.addToTail('First');
+// linkedList.addToTail('Second');
+
+// reverseLinkedList(linkedList);
