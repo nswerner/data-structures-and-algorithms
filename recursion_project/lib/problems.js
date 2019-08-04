@@ -60,11 +60,18 @@ function sumArray(array, pointer = 0) {
 // reverseString("c")           // => "c"
 // reverseString("internet")    // => "tenretni"
 // reverseString("friends")     // => "sdneirf"
-function reverseString(str) {
-    if (str.length === 0) return "";
 
-    const shorterString = str.slice(1);
-    return reverseString(shorterString) + str.slice(0, 1);
+
+// function reverseString(str) {
+//     if (str.length === 0) return "";
+
+//     const shorterString = str.slice(1);
+//     return reverseString(shorterString) + str.slice(0, 1);
+// }
+
+function reverseString(str, pointer=str.length-1) {
+    if (pointer < 0) return "";
+    return str[pointer] + reverseString(str, pointer-1);
 }
 
 
