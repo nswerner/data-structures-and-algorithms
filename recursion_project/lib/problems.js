@@ -35,12 +35,17 @@ function lucasNumber(n) {
 // sumArray([5])            // => 5
 // sumArray([5, 2])         // => 7
 // sumArray([4, 10, -1, 2]) // => 15
-function sumArray(array) {
-    if (array.length === 0) return 0;
+// function sumArray(array) {
+//     if (array.length === 0) return 0;
 
-    const lastNum = array[array.length - 1]
-    const slicedArray = array.slice(0, array.length - 1);
-    return sumArray(slicedArray) + lastNum;
+//     const lastNum = array[array.length - 1]
+//     const slicedArray = array.slice(0, array.length - 1);
+//     return sumArray(slicedArray) + lastNum;
+// }
+
+function sumArray(array, pointer = 0) {
+    if (pointer === array.length) return 0;
+    return sumArray(array, pointer+1) + array[pointer];
 }
 
 
