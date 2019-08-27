@@ -91,13 +91,23 @@ function reverseString(str, pointer=str.length-1) {
 // pow(2, 5)    // => 32
 // pow(3, 4)    // => 81
 // pow(2, -5)   // => 0.03125
+
+// function pow(base, exponent) {
+//     if (exponent === 0) return 1;
+
+//     if (exponent > 0) {
+//         return base * pow(base, exponent - 1);
+//     } else {
+//         return 1 / base * pow(base, exponent + 1);
+//     }
+// }
+
 function pow(base, exponent) {
     if (exponent === 0) return 1;
-
     if (exponent > 0) {
-        return base * pow(base, exponent - 1);
+        return pow(base, exponent - 1) * base;
     } else {
-        return 1 / base * pow(base, exponent + 1);
+        return pow(base, exponent + 1) / base;
     }
 }
 
@@ -130,15 +140,26 @@ function pow(base, exponent) {
 //     1-dimensional array: ['some data']
 //     2-dimensional array: [['some data']]
 //     3-dimensional array: [[['some data']]]
-function flatten(data) {
-    if (!Array.isArray(data)) return [ data ];
+// function flatten(data) {
+//     if (!Array.isArray(data)) return [ data ];
 
-    let flattenedArray = [];
-    for (let idx = 0; idx < data.length; idx += 1) {
-        flattenedArray.push(...flatten(data[idx]));
+//     let flattenedArray = [];
+//     for (let idx = 0; idx < data.length; idx += 1) {
+//         flattenedArray.push(...flatten(data[idx]));
+//     }
+
+//     return flattenedArray;
+// }
+
+function flatten(data) {
+    if (!(Array.isArray(data))) return [ data ];
+    const flattened = [];
+
+    for (let idx = 0; idx < data.length; idx++) {
+        flattened.push(...flatten(data[idx]));
     }
 
-    return flattenedArray;
+    return flattened;
 }
 
 // Write a function, fileFinder(directories, targetFile), that accepts an object representing directories and a string respresenting a filename.
@@ -188,6 +209,10 @@ function fileFinder(directories, targetFile) {
     }
 
     return false;
+}
+
+function fileFinder(directories, targetFile) {
+
 }
 
 // console.log(fileFinder(desktop, 'app_academy_logo.svg'));
