@@ -49,7 +49,7 @@ const getCharFrequencies = function(string) {
 }
 
 
-const checkPermutation = function(string1, string2) {
+let checkPermutation = function(string1, string2) {
   if (string1.length !== string2.length) return false;
 
   const s1Freq = getCharFrequencies(string1);
@@ -68,3 +68,38 @@ const checkPermutation = function(string1, string2) {
 console.log(checkPermutation("abc", "bac")) // => true
 console.log(checkPermutation('abc', 'abca')) // => false
 console.log(checkPermutation('cat', 'dog')) // => false
+
+
+console.time('checkPermutation');
+checkPermutation("abcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbd",
+  "bacccccbbbddcbdcaabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbd"); 
+console.timeEnd('checkPermutation');
+
+// 0.453ms with set creation and iteration
+
+checkPermutation = function (string1, string2) {
+  if (string1.length !== string2.length) return false;
+
+  const s1Freq = getCharFrequencies(string1);
+  const s2Freq = getCharFrequencies(string2);
+
+  for (let char of string1) {
+    if (s1Freq[char] !== s2Freq[char]) return false;
+  }
+
+  return true;
+}
+
+console.time('checkPermutation');
+checkPermutation("abcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbd",
+ "bacccccbbbddcbdcaabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbd"); 
+console.timeEnd('checkPermutation');
+
+// 0.236 ms with string iteration
+
+
+
+// ∴ String Iteration faster when string is small or double values are not present, 
+// but what about when a lot of dupes are present???
+// string iteration still faster by 50%!!!
+
