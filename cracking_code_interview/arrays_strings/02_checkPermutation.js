@@ -70,10 +70,10 @@ console.log(checkPermutation('abc', 'abca')) // => false
 console.log(checkPermutation('cat', 'dog')) // => false
 
 
-console.time('checkPermutation');
+console.time('set iteration');
 checkPermutation("abcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbd",
   "bacccccbbbddcbdcaabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbd"); 
-console.timeEnd('checkPermutation');
+console.timeEnd('set iteration');
 
 // 0.453ms with set creation and iteration
 
@@ -90,10 +90,10 @@ checkPermutation = function (string1, string2) {
   return true;
 }
 
-console.time('checkPermutation');
+console.time('string iteration');
 checkPermutation("abcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbd",
  "bacccccbbbddcbdcaabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbdabcccccccccbbbbbd"); 
-console.timeEnd('checkPermutation');
+console.timeEnd('string iteration');
 
 // 0.236 ms with string iteration
 
