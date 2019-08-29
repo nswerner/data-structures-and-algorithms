@@ -69,10 +69,14 @@ let permutationOfPalindrome = function(inputString) {
   return isOne <= 1;
 }
 
-
+// TEST
 
 console.log(permutationOfPalindrome('acto cat')); // => true ('taco cat')
 console.log(permutationOfPalindrome('babbadook')); // => false 
 console.log(permutationOfPalindrome('babbab')); // => true ('babbab')
+console.log(permutationOfPalindrome('careacr')); // => true ('racecar')
+console.log(permutationOfPalindrome('abcde')); // => false
+console.log(permutationOfPalindrome('a  bc  de ')); // => false
+console.log(permutationOfPalindrome('race      car')); // => true ('racecar')
 
 
